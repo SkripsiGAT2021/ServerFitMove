@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const { authHeaderMiddleware, signUser } = require("./AuthController");
+const { signUser } = require("./AuthController");
+const { authAndHeaderMiddleware } = require("../Middleware");
 
-router.post("/signup", authHeaderMiddleware, signUser);
+router.post("/signup", authAndHeaderMiddleware, signUser);
 
 module.exports = router;
