@@ -3,7 +3,6 @@ var check = require("check-types");
 
 const createLog = (req, res) => {
   let log = req.body;
-  console.log(log);
   if (checkSanitize(log)) {
     GameLog.create({ ...log, ...{ score: parseInt(log.score) } })
       .then((log) => {
@@ -12,7 +11,6 @@ const createLog = (req, res) => {
         });
       })
       .catch((err) => {
-        console.log(err);
         return res.status(409).json({
           error: err,
         });
