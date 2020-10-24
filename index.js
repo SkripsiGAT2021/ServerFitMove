@@ -19,6 +19,12 @@ app.disable("x-powered-by");
 app.use("/auth", authRouter);
 app.use("/logs", logRouter);
 
+app.get("/version", (req, res) => {
+  res.status(201).json({
+    version: "1.0.1",
+  });
+});
+
 const server = app.listen(port, ip, () => {
   console.log(`server is starting in ${ip}:${port}`);
 });
