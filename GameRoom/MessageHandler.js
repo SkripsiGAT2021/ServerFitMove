@@ -1,5 +1,5 @@
 const RoomGenerator = require("./RoomGenerator");
-const MessageBuilder = require("./SocketMessageBuilder`");
+const MessageBuilder = require("./SocketMessageBuilder");
 const {
   CONNECT_CLIENT,
   CONNECT_GAME,
