@@ -24,7 +24,7 @@ app.disable("x-powered-by");
 app.use("/auth", authRouter);
 app.use("/logs", logRouter);
 app.use("/userprogress", userProgRouter);
-app.get("/kacau", (req, res) => res.send(0 / 2));
+app.get("/kacau", (req, res) => res.send(port));
 
 const server = app.listen(port, ip, () => {
   console.log(`server is starting in ${ip}:${port}`);
