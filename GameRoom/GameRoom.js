@@ -8,6 +8,10 @@ const initWebSocket = (server, path) => {
 
 const websocketEventHandler = (serverWs) => {
   serverWs.on("connection", (wsc) => {
+    wsc.on("error", (message) => {
+      console.log(wsc, message);
+      console.log("Above Undefiend");
+    });
     wsc.on("close", (message) => {
       MessageHandler.onClose(wsc, message);
     });

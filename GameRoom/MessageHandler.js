@@ -1,35 +1,40 @@
-const RoomGenerator = require("./RoomGenerator");
-const MessageBuilder = require("./SocketMessageBuilder");
-const {
-  CONNECT_CLIENT,
-  CONNECT_GAME,
-  CONNECT_ROOM,
-  CREATE_ROOM,
-} = require("./MessageType");
-
-const connectGame = (wsc, message) => {
-  roomKey = RoomGenerator.createRoom(wsc);
-  wsc.send(
-    JSON.stringify({
-      TYPE: "ROOM_KEY",
-      DATA: roomKey,
-    })
-  );
-};
+const controller = require("./SocketMessageController");
+const { get } = require("./MessageType");
 
 const messageHandler = (wsc, message) => {
   const parsedMessage = JSON.parse(message);
-  switch (parsedMessage) {
-    case CONNECT_CLIENT:
+  console.log(message);
+  switch (parsedMessage.type) {
+    case get.GAME_ROOM:
+      controller.createRoomWithSocket(wsc);
       break;
-    // connecting to server as phone
-    case CONNECT_ROOM:
+    // create room then response using send.R_GAME_ROOM
+    case get.PHONE_CLIENT:
+      console.log("gotcha phoneClient", parsedMessage);
+      controller.connectToRoomWith(wsc, parsedMessage.data);
       break;
-    // connecting to server to connect to gameRoom
-    case CONNECT_GAME:
-      connectGame(wsc, parsedMessage);
+    // connect phone room with given id and send back R_PHONE_CLIENT, and send R_PHONE_CONNECTED
+    case get.PHONE_READY:
+      console.log("gotcha phoneReady", parsedMessage);
+      controller.readyState(wsc, parsedMessage.data);
       break;
-    // connecting to server as gameWeb and create new room
+    // send to game display THEY ARE READY
+    case get.POSE_DETECTION:
+      console.log("gotcha poseDetection", parsedMessage);
+      controller.poseDetected(wsc, parsedMessage.data);
+      // keep track of the score
+      // send to displat R_POSE_DETECTION
+      break;
+    case get.GAME_DONE:
+      console.log("gotcha GameDone", parsedMessage);
+      controller.gameDone(wsc, parsedMessage.data);
+      // save score and mode to log
+      // send back R_GAME_DONE
+      // send to phone R_GAME_DONE Too
+      break;
+    case get.GAME_STARTED:
+      console.log("GAME STARTED", parsedMessage);
+      controller.gameStart(wsc, parsedMessage.data);
   }
 };
 

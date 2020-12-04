@@ -6,16 +6,20 @@ const rooms = {};
 const roomBuilder = (gameWebSocket) => {
   return {
     game: gameWebSocket,
-    client: null,
+    mode: null,
+    score: 0,
+    phone: null,
+    combo: 0,
+    userId: "",
   };
 };
 
 const createRoomKey = () => {
   if (queue.isEmpty()) {
     currIndex += 1;
-    return `${currIndex}X`;
+    return `${currIndex}`;
   }
-  return `${queue.nextQueue()}X`;
+  return `${queue.nextQueue()}`;
 };
 
 const createRoom = (gameWebSocket) => {

@@ -1,11 +1,12 @@
 const MessageHandler = require("./MessageHandler");
+const CloseHandler = require("./CloseHandler");
 
 const onClose = (wsc, message) => {
-  MessageHandler(wsc, message);
+  CloseHandler(wsc, message);
 };
 
 const onMessage = (wsc, message) => {
-  console.log(message);
+  MessageHandler(wsc, message);
 };
 
 module.exports = {
