@@ -67,10 +67,6 @@ const poseDetectionProcessor = (
   } else if (next) {
     room.combo = detection ? room.combo : 0;
   }
-  return {
-    detection: detection,
-    score: room.score,
-  };
 };
 
 const starCounter = (score) =>
