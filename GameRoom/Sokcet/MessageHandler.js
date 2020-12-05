@@ -1,5 +1,5 @@
 const controller = require("./SocketMessageController");
-const { get } = require("./MessageType");
+const { get } = require("../MessageType");
 
 const messageHandler = (wsc, message) => {
   const parsedMessage = JSON.parse(message);

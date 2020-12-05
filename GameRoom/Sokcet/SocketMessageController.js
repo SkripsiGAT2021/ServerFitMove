@@ -1,15 +1,22 @@
-const { closeRoom, createRoom, getRoomWithKey } = require("./RoomGenerator");
+const {
+  closeRoom,
+  createRoom,
+  getRoomWithKey,
+} = require("../GameLogic/RoomGenerator");
 const {
   poseGenerator,
   generateThemeFromBG,
   poseDetectionProcessor,
-} = require("./GameLogic");
-const builder = require("../Utils/SocketMessageBuilder");
+  starCounter,
+  expCounter,
+} = require("../GameLogic/GameLogic");
+const builder = require("../../Utils/SocketMessageBuilder");
 
-const { response } = require("./MessageType");
-const GameLog = require("../Firebase/FirebaseGameLog");
+const { response } = require("../MessageType");
+const GameLog = require("../../Firebase/FirebaseGameLog");
 
 const createRoomWithSocket = (wsGame) => {
+  console.log("called Create");
   const key = createRoom(wsGame);
   wsGame.roomId = key;
   wsGame.send(
@@ -21,18 +28,24 @@ const createRoomWithSocket = (wsGame) => {
 
 const connectToRoomWith = (wsc, message) => {
   const room = checkRoom(wsc, message.roomId);
-  console.log("message");
   if (!room) {
     return;
   }
-  // get userId
+  // if user exist the can't Connect
+  if (room.phone) {
+    wsc.send(
+      builder(response.R_ROOM_OCCUPIED, {
+        status: "Error",
+      })
+    );
+    return;
+  }
   wsc.roomId = message.roomId;
   room.phone = wsc;
   room.userId = message.userId;
   room.mode = message.mode;
   const poses = poseGenerator(message.mode);
   room.poses = poses;
-  console.log("RPHONE_CLIENT_SEND");
   wsc.send(
     builder(response.R_PHONE_CLIENT, {
       status: "OK",
@@ -94,8 +107,8 @@ const gameDone = (wsc, message) => {
   }
   // save game log
   GameLog.create({
-    userId: "edVo6aVNubOTukcogKgYRmnT7Ik2",
-    mode: "MIRROR",
+    userId: roomId,
+    mode: room.mode,
     score: room.score,
   });
   // Remember to refacotr
@@ -103,24 +116,25 @@ const gameDone = (wsc, message) => {
     builder(response.R_GAME_DONE, {
       status: "OK",
       score: room.score,
-      star: Math.floor((room.score / 2000) * 5),
-      exp: 20,
-      // Math.floor((room.score / 2000) * 5) > 0
-      //   ? 40 + Math.floor((room.score / 2000) * 5) * 20
-      //   : 0,
+      star:
+        Math.floor(room.score / 3000) > 5 ? 5 : Math.floor(room.score / 3000),
+      exp:
+        Math.floor(room.score / 3000) < 1
+          ? 0
+          : (Math.floor(room.score / 3000) > 5
+              ? 5
+              : (Math.floor(room.score / 3000) - 1) * 20) + 50,
     })
   );
   room.game.send(
     builder(response.R_GAME_DONE, {
       status: "OK",
       score: room.score,
-      star: Math.floor((room.score / 2000) * 5),
-      exp:
-        Math.floor((room.score / 2000) * 5) < 1
-          ? 40 + Math.floor((room.score / 2000) * 5) * 20
-          : 0,
+      star: starCounter(room.score),
+      exp: expCounter(starCounter(room.score)),
     })
   );
+  closeRoom(roomId);
 };
 
 const checkRoom = (wsc, roomId) => {

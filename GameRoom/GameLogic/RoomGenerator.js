@@ -1,4 +1,4 @@
-const Queue = require("../Utils/Queue");
+const Queue = require("../../Utils/Queue");
 
 const queue = new Queue();
 let currIndex = 0;
@@ -19,6 +19,7 @@ const createRoomKey = () => {
     currIndex += 1;
     return `${currIndex}`;
   }
+  console.log(queue);
   return `${queue.nextQueue()}`;
 };
 

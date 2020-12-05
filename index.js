@@ -8,7 +8,7 @@ const authRouter = require("./Auth/AuthRouter");
 const logRouter = require("./Logs/LogRouter");
 const userProgRouter = require("./UserProgress/UserProgRouter");
 const Queue = require("./Utils/Queue");
-const GameRoom = require("./GameRoom/GameRoom");
+const GameRoom = require("./GameRoom/Sokcet/GameRoom");
 const { Pose } = require("./Utils/PoseGenerator");
 
 // VARIABLE
@@ -24,7 +24,7 @@ app.use(express.static("public"));
 
 app.disable("x-powered-by");
 app.get("/home", (req, res) => {
-  res.render("home");
+  res.render("home", { DEVMODE: process.env.DEVMODE });
 });
 app.use("/auth", authRouter);
 app.use("/logs", logRouter);

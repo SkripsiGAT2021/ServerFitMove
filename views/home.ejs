@@ -381,6 +381,11 @@
       return JSON.stringify(message);
     };
   </script>
+  <script>
+    const socket = true
+      ? new WebSocket("ws://localhost:8000/room")
+      : new WebSocket("wss://fitmove2021.et.r.appspot.com/room");
+  </script>
   <script src="./assets/js/utils.js"></script>
   <script src="./assets/js/gameScreenMemory.js"></script>
   <script src="./assets/js/gameScreenMirror.js"></script>

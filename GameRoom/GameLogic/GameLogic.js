@@ -1,13 +1,13 @@
 const {
   generateMemoryMode,
   generateMirrorMode,
-} = require("../Utils/PoseGenerator");
+} = require("../../Utils/PoseGenerator");
 
 const poseGenerator = (mode) => {
   if (mode == "mirror") {
-    return generateMirrorMode(3);
+    return generateMirrorMode(150);
   }
-  return generateMemoryMode(1, 1, 1);
+  return generateMemoryMode(6, 7, 9);
 };
 
 const generateThemeFromBG = (bgName) => {
@@ -58,12 +58,12 @@ const poseDetectionProcessor = (
   next = false
 ) => {
   if (!changeToQ && !next) {
-    room.combo = detection
-      ? room.combo >= 100
-        ? room.combo + 20
-        : room.combo + 100
-      : 0;
-    room.score += room.combo;
+    room.combo = detection ? room.combo + 1 : 0;
+    if (room.combo >= 5) {
+      room.score += room.mode == "mirror" ? 50 : 100;
+      room.combo = 0;
+    }
+    room.score += detection ? (room.mode == "mirror" ? 100 : 200) : 0;
   } else if (next) {
     room.combo = detection ? room.combo : 0;
   }
@@ -73,8 +73,16 @@ const poseDetectionProcessor = (
   };
 };
 
+const starCounter = (score) =>
+  Math.floor(score / 3000) > 5 ? 5 : Math.floor(score / 3000);
+
+const expCounter = (star) =>
+  star < 1 ? 0 : star > 5 ? 5 : (star - 1) * 20 + 50;
+
 module.exports = {
   poseGenerator,
   generateThemeFromBG,
   poseDetectionProcessor,
+  starCounter,
+  expCounter,
 };

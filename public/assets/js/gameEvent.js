@@ -1,9 +1,7 @@
 /**
  * Websocket object
  */
-const socket = new WebSocket("wss://fitmove2021.et.r.appspot.com/room");
-// const socket = new WebSocket("ws://localhost:8000/room");
-const BASE_API = "https://fitmove2021.et.r.appspot.com/";
+
 /**
  * Connect to websocket listener
  */

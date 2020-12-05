@@ -18,5 +18,6 @@ module.exports = {
     R_GAME_DONE: "R_GAME_DONE",
     R_READY: "R_READY",
     R_PHONE_CONNECTED: "R_PHONE_CONNECTED",
+    R_ROOM_OCCUPIED: "R_ROOM_OCCUPIED",
   },
 };

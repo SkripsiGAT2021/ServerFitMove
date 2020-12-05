@@ -16,11 +16,11 @@ const signOrCreate = async (user) => {
   }
 };
 
-const create = (user) => {
+const createUser = (user) => {
   return admin.auth().createUser(user);
 };
 
 module.exports = {
   signOrCreate,
-  create,
+  createUser,
 };
