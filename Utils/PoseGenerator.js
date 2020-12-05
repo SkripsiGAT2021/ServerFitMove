@@ -47,7 +47,11 @@ class Pose {
 const generateMirrorMode = (numberOfPoses) => {
   var poses = [];
   for (var i = 0; i < numberOfPoses; i++) {
-    poses.push(getPoses());
+    let newPose = getPoses();
+    while (i != 0 && poses[poses.length - 1].name == newPose.name) {
+      newPose = getPoses();
+    }
+    poses.push(newPose);
   }
   return [poses];
 };
@@ -59,20 +63,31 @@ const generateMirrorMode = (numberOfPoses) => {
  * @param { Number } numberOfFivePoses number of poses
  * @returns { Array<Array<Pose>> }
  */
-const generateMemoryMode = (
-  numberOfOnePoses,
-  numberOfThreeposes,
-  numberOfFivePoses
-) => {
+const generateMemoryMode = (firstWave, secondWave, thirdWave) => {
   var poses = [];
-  for (var i = 0; i < numberOfOnePoses; i++) {
+  for (var i = 0; i < firstWave; i++) {
     poses.push([getPoses()]);
   }
-  for (var i = 0; i < numberOfThreeposes; i++) {
-    poses.push([getPoses(), getPoses(), getPoses()]);
+  for (var i = 0; i < secondWave; i++) {
+    let posesTemp = [];
+    while (posesTemp.length < 3) {
+      let newPose = getPoses();
+      if (!posesTemp.some((pose) => pose.name == newPose.name)) {
+        posesTemp.push(newPose);
+      }
+    }
+    poses.push(posesTemp);
   }
-  for (var i = 0; i < numberOfFivePoses; i++) {
-    poses.push([getPoses(), getPoses(), getPoses(), getPoses(), getPoses()]);
+
+  for (var i = 0; i < thirdWave; i++) {
+    let posesTemp = [];
+    while (posesTemp.length < 5) {
+      let newPose = getPoses();
+      if (!posesTemp.some((pose) => pose.name == newPose.name)) {
+        posesTemp.push(newPose);
+      }
+    }
+    poses.push(posesTemp);
   }
   return poses;
 };

@@ -184,8 +184,8 @@ const getGameScreenMirrorHTML = ({ mode, poses, background, themeColor }) => `
         <div style="width: 8em"></div>
     </div>
 
-    <div class="pose-container" style="background:${themeColor}">
-        <div class="pose-bar">
+    <div class="pose-container" style="background:${themeColor}; ">
+        <div class="pose-bar" style="width:${poses.length * 300}px">
         ${generateAllPosesMirror(poses)}
         </div>
     </div>

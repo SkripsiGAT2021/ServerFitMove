@@ -1,5 +1,6 @@
 const controller = require("./SocketMessageController");
 const { get } = require("../MessageType");
+const { parse } = require("uuid");
 
 const messageHandler = (wsc, message) => {
   const parsedMessage = JSON.parse(message);
@@ -35,6 +36,9 @@ const messageHandler = (wsc, message) => {
     case get.GAME_STARTED:
       console.log("GAME STARTED", parsedMessage);
       controller.gameStart(wsc, parsedMessage.data);
+      break;
+    default:
+      controller.checkConnection(wsc, parsedMessage.data);
   }
 };
 

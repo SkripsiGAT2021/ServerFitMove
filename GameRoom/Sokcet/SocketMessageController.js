@@ -138,6 +138,10 @@ const gameDone = (wsc, message) => {
   closeRoom(roomId);
 };
 
+const checkConnection = (wsc, message) => {
+  wsc.send(builder("R_CONNECTION_SAFE", { status: "OK" }));
+};
+
 const checkRoom = (wsc, roomId) => {
   const room = getRoomWithKey(roomId);
   if (!room) {
@@ -170,4 +174,5 @@ module.exports = {
   gameDone,
   createRoomWithSocket,
   gameStart,
+  checkConnection,
 };
