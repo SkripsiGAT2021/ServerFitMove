@@ -75,10 +75,11 @@ const poseDetected = (wsc, message) => {
   if (!room) {
     return;
   }
-  const data = poseDetectionProcessor(room, detection, changeToQ, next);
+  poseDetectionProcessor(room, detection, changeToQ, next);
   room.game.send(
     builder(response.R_POSE_DETECTION, {
-      ...data,
+      detection: detection,
+      score: room.score,
       next: next || null,
       poseId: poseId || null,
       changeToQ: changeToQ || null,

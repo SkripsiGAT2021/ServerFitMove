@@ -65,12 +65,12 @@ const generateMemoryMode = (
   numberOfFivePoses
 ) => {
   var poses = [];
-  // for (var i = 0; i < numberOfOnePoses; i++) {
-  //   poses.push([getPoses()]);
-  // }
-  // for (var i = 0; i < numberOfThreeposes; i++) {
-  //   poses.push([getPoses(), getPoses(), getPoses()]);
-  // }
+  for (var i = 0; i < numberOfOnePoses; i++) {
+    poses.push([getPoses()]);
+  }
+  for (var i = 0; i < numberOfThreeposes; i++) {
+    poses.push([getPoses(), getPoses(), getPoses()]);
+  }
   for (var i = 0; i < numberOfFivePoses; i++) {
     poses.push([getPoses(), getPoses(), getPoses(), getPoses(), getPoses()]);
   }
