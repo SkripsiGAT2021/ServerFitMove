@@ -111,20 +111,15 @@ const gameDone = (wsc, message) => {
     userId: roomId,
     mode: room.mode,
     score: room.score,
+    date: new Date(),
   });
   // Remember to refacotr
   room.phone.send(
     builder(response.R_GAME_DONE, {
       status: "OK",
       score: room.score,
-      star:
-        Math.floor(room.score / 3000) > 5 ? 5 : Math.floor(room.score / 3000),
-      exp:
-        Math.floor(room.score / 3000) < 1
-          ? 0
-          : (Math.floor(room.score / 3000) > 5
-              ? 5
-              : (Math.floor(room.score / 3000) - 1) * 20) + 50,
+      star: starCounter(room.score),
+      exp: expCounter(starCounter(room.score)),
     })
   );
   room.game.send(

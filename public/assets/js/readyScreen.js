@@ -4,7 +4,7 @@
  */
 const readyHTMLContent = () => `
     <div class="ready-content">
-        <img src="./assets/img/readypose.svg" alt="ready-pose.svg" />
+        <img src="./assets/img/readyPoseWhite.svg" alt="ready-pose.svg" />
         <h1>Make this pose if you're ready to play</h1>
     </div>
 `;
