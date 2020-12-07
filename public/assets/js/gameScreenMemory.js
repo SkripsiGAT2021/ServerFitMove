@@ -98,7 +98,7 @@ const renderScoreBar = () => {
 
 const renderScoreBarMemory = () => {
   document.querySelector(".star-prog-bar").style.transform = `scaleY(${
-    GameState.score / 2000 < 1 ? GameState.score / 2000 : 1
+    GameState.score / 2000 < 1 ? GameState.score / 15000 : 1
   })`;
 };
 
