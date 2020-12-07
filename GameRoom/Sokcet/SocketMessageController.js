@@ -108,7 +108,7 @@ const gameDone = (wsc, message) => {
   }
   // save game log
   GameLog.create({
-    userId: roomId,
+    userId: room.userId,
     mode: room.mode,
     score: room.score,
     date: new Date(),

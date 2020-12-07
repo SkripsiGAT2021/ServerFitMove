@@ -106,18 +106,13 @@ const getPoses = () => {
       });
     case 2:
       return new Pose({
-        poseName: "Pose 2.png",
-        leftKneeAngle: 100,
-      });
-    case 3:
-      return new Pose({
         poseName: "Pose 3.png",
         rightElbowAngle: 180,
         rightShoulderAngle: 90,
         leftElbowAngle: 180,
         leftShoulderAngle: 90,
       });
-    case 4:
+    case 3:
       return new Pose({
         poseName: "Pose 4.png",
         rightElbowAngle: 90,
@@ -125,7 +120,7 @@ const getPoses = () => {
         leftElbowAngle: 180,
         leftShoulderAngle: 160,
       });
-    case 5:
+    case 4:
       return new Pose({
         poseName: "Pose 5.png",
         rightElbowAngle: 90,
@@ -133,7 +128,7 @@ const getPoses = () => {
         leftElbowAngle: 180,
         leftShoulderAngle: 90,
       });
-    case 6:
+    case 5:
       return new Pose({
         poseName: "Pose 6.png",
         rightElbowAngle: 180,
@@ -141,18 +136,39 @@ const getPoses = () => {
         leftElbowAngle: 180,
         leftShoulderAngle: 160,
       });
-    case 7:
-      return new Pose({
-        poseName: "Pose 7.png",
-        rightElbowAngle: 180,
-        rightShoulderAngle: 90,
-        leftKneeAngle: 110,
-      });
-    case 8:
+    case 6:
       return new Pose({
         poseName: "Pose 8.png",
         leftElbowAngle: 180,
         leftShoulderAngle: 90,
+      });
+    case 7:
+      return new Pose({
+        poseName: "Pose 9.png",
+        leftElbowAngle: 90,
+        leftShoulderAngle: 90,
+      });
+    case 8:
+      return new Pose({
+        poseName: "Pose 10.png",
+        leftElbowAngle: 90,
+        leftShoulderAngle: 90,
+        rightElbowAngle: 180,
+        rightShoulderAngle: 160,
+      });
+    case 9:
+      return new Pose({
+        poseName: "Pose 11.png",
+        leftElbowAngle: 90,
+        leftShoulderAngle: 90,
+        rightElbowAngle: 180,
+        rightShoulderAngle: 90,
+      });
+    case 10:
+      return new Pose({
+        poseName: "Pose 12.png",
+        rightElbowAngle: 180,
+        rightShoulderAngle: 90,
       });
   }
 };

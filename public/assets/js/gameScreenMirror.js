@@ -19,11 +19,11 @@ const initGameScreenMirror = (app, gameState, cb) => {
     }, 500);
   }, 500);
 
-  // DEVELOPMENT PURPOSE
-  app.addEventListener("click", () => {
-    nextMove(false);
-  });
-  // DEVELOPMENT PURPOSE
+  // // DEVELOPMENT PURPOSE
+  // app.addEventListener("click", () => {
+  //   nextMove(false);
+  // });
+  // // DEVELOPMENT PURPOSE
 };
 
 /**
@@ -60,7 +60,6 @@ const nextMove = (detection) => {
   poseResult(currentGameIndex, detection);
 
   if (!isLastMove()) {
-    console.log("called lastMove");
     setTimeout(() => {
       const posebar = getDom(".pose-bar");
       currentGameIndex += 1;
@@ -185,7 +184,9 @@ const getGameScreenMirrorHTML = ({ mode, poses, background, themeColor }) => `
     </div>
 
     <div class="pose-container" style="background:${themeColor}; ">
-        <div class="pose-bar" style="width:${poses.length * 300}px">
+        <div class="pose-bar" style="width:${
+          ((poses.length * window.innerWidth) / 9) * 2
+        }px">
         ${generateAllPosesMirror(poses)}
         </div>
     </div>
