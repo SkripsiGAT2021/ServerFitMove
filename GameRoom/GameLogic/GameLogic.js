@@ -7,7 +7,7 @@ const poseGenerator = (mode) => {
   if (mode == "mirror") {
     return generateMirrorMode(150);
   }
-  return generateMemoryMode(6, 7, 9);
+  return generateMemoryMode(3, 8, 9);
 };
 
 const generateThemeFromBG = (bgName) => {

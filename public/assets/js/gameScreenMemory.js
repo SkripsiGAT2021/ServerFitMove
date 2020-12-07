@@ -167,7 +167,7 @@ const showDone = ({ score, star, exp }) => {
  * @returns {String} HTML String
  */
 const getGameScreenMemoryHTML = ({ mode, background, themeColor }) => `
-    <div class="game-header" style="background:${themeColor}">
+    <div class="game-header" style="background:${themeColor}; color="white;">
         <div class="content-item">
           <h2>${mode}</h2>
         </div>
