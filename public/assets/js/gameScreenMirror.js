@@ -155,7 +155,7 @@ const generateAllPosesMirror = (poses) =>
  * @returns {String} HTML String
  */
 const getGameScreenMirrorHTML = ({ mode, poses, background, themeColor }) => `
-    <div class="game-header" style="background:${themeColor}; color="white;">
+    <div class="game-header" style="background:${themeColor}; color:white;">
         <div class="content-item">
           <h2>${mode}</h2>
         </div>
