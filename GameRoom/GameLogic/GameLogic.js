@@ -15,37 +15,37 @@ const generateThemeFromBG = (bgName) => {
     case "gym":
       return {
         background: "images/bg/gym.png",
-        song: "songs/betterDay.mp3",
+        song: "songs/gym.mp3",
         themeColor: "#465C60",
       };
     case "beach":
       return {
         background: "images/bg/beach.png",
-        song: "songs/betterDay.mp3",
+        song: "songs/beach.mp3",
         themeColor: "#928647",
       };
     case "park":
       return {
         background: "images/bg/park.png",
-        song: "songs/betterDay.mp3",
+        song: "songs/park.mp3",
         themeColor: "#4C5200",
       };
     case "city":
       return {
         background: "images/bg/city.png",
-        song: "songs/betterDay.mp3",
+        song: "songs/city.mp3",
         themeColor: "#897763",
       };
     case "autumn":
       return {
         background: "images/bg/autumn.png",
-        song: "songs/betterDay.mp3",
+        song: "songs/autumn.mp3",
         themeColor: "#973600",
       };
     default:
       return {
         background: "images/bg/autumn.png",
-        song: "songs/betterDay.mp3",
+        song: "songs/autumn.mp3",
         themeColor: "#973600",
       };
   }
