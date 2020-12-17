@@ -2,6 +2,7 @@ const admin = require("./FirebaseAdmin");
 
 const signOrCreate = async (user) => {
   try {
+    admin.auth();
     return await admin.auth().getUserByEmail(user.email);
   } catch (err) {
     if (err.code == "auth/user-not-found") {
