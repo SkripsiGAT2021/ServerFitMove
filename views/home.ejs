@@ -382,9 +382,7 @@
     };
   </script>
   <script>
-    const socket = false
-      ? new WebSocket("ws://localhost:8000/room")
-      : new WebSocket("wss://fitmove2021.et.r.appspot.com/room");
+    const socket = new WebSocket("ws://localhost:8000/room")
   </script>
   <script src="./assets/js/utils.js"></script>
   <script src="./assets/js/gameScreenMemory.js"></script>
